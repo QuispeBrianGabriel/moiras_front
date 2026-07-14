@@ -14,6 +14,8 @@ CYAN   := \033[0;36m
 up:
 	@printf "$(CYAN)$(BOLD)🚀 Levantando entorno...$(RESET)\n"
 	@$(DC) up -d --build
+	@printf "$(GREEN)🤖 Preparando el contenedor$(RESET)\n"
+	@$(DC) exec $(SERVICE) npm ci
 	@printf "$(GREEN)✅ Entrando a la bash del contenedor$(RESET)\n"
 	@$(DC) exec $(SERVICE) bash
 
