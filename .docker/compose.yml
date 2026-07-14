@@ -1,0 +1,17 @@
+services:
+  frontend:
+    container_name: moiras_front_dev
+    image: moiras_front-dev
+    stdin_open: true
+    tty: true
+    build:
+      context: ..
+      dockerfile: .docker/Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ..:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:
