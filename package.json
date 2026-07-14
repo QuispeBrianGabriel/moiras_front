@@ -1,0 +1,8 @@
+{
+  "name": "moiras-front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'agregá acá tu comando de desarrollo'"
+  }
+}
