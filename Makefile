@@ -1,4 +1,4 @@
-DC      := docker compose -f .docker/compose.yml
+DC      := docker compose -f docker/compose.yml
 SERVICE := frontend
 
 RESET  := \033[0m
