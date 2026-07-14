@@ -4,9 +4,9 @@
   "private": true,
 
   "scripts": {
-    "dev": "vite --host",
-    "build": "vite build",
-    "preview": "vite preview --host"
+    "dev": "vite --config config/vite.config.js --host",
+    "build": "vite build --config config/vite.config.js",
+    "preview": "vite preview --config config/vite.config.js --host"
   },
 
   "devDependencies": {
