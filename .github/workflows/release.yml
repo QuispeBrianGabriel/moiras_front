@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-push:
-    name: Build & Push imagen de producción
+    name: Build & Push Imagen
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: docker/Dockerfile.prod
+          file: Dockerfile.prod
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
