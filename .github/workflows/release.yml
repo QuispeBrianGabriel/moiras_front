@@ -1,3 +1,12 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'v*'
+
 jobs:
   build-and-push:
     name: Build & Push imagen de producción
