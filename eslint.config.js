@@ -13,14 +13,15 @@ export default tseslint.config(
 
   js.configs.recommended,
 
-  ...tseslint.configs.strictTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
-
-  importPlugin.flatConfigs.recommended,
-  importPlugin.flatConfigs.typescript,
-
   {
     files: ['**/*.ts', '**/*.tsx'],
+
+    extends: [
+      ...tseslint.configs.strictTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+    ],
 
     languageOptions: {
       ecmaVersion: 2023,
