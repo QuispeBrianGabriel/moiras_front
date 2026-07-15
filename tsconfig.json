@@ -1,15 +1,30 @@
 {
   "compilerOptions": {
     "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "moduleDetection": "force",
     "jsx": "react-jsx",
+
     "strict": true,
-    "noEmit": true,
+    "useDefineForClassFields": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "resolveJsonModule": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true
   },
 
   "include": ["src/**/*"]
