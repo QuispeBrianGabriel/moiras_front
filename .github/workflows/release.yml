@@ -58,17 +58,14 @@ jobs:
           cache-to: type=gha,mode=max
 
   deploy:
-    name: Deploy a Producción (Railway)
+    name: Deploy a Producción
     runs-on: ubuntu-latest
     needs: build-and-push
     environment: production
-
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
       - name: Instalar Railway CLI
-        uses: railwayapp/cli-action@v3
+        run: npm install -g @railway/cli
 
       - name: Desplegar en Railway
         run: railway redeploy --service ${{ secrets.RAILWAY_SERVICE_ID }}
