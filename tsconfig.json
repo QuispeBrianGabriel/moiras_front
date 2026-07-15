@@ -24,8 +24,9 @@
     "verbatimModuleSyntax": true,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
 
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "features/**/*"]
 }
