@@ -28,5 +28,5 @@
     "allowImportingTsExtensions": true
   },
 
-  "include": ["src/**/*", "features/**/*"]
+  "include": ["src/**/*", "features/**/*", "test/**/*"]
 }

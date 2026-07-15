@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { registerUser } from './registration';
+import { registerUser } from '../../src/login/registration';
 
 describe('registerUser', () => {
   it('registra ok con datos validos', () => {
