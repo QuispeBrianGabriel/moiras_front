@@ -18,4 +18,13 @@ describe('registerUser', () => {
     });
     expect(result.ok).toBe(false);
   });
+
+  it('falla si la contraseña tiene menos de 8 caracteres', () => {
+    const result = registerUser({
+      email: 'user@test.com',
+      password: '1234567',
+    });
+    expect(result.ok).toBe(false);
+    expect(result.error).toBe('La contraseña debe tener al menos 8 caracteres');
+  });
 });
