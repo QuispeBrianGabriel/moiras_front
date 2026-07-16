@@ -21,18 +21,18 @@ Este repositorio contiene la aplicación frontend desarrollada con React y Vite.
 
 ## Tecnologías
 
-* React
-* TypeScript
-* Vite
-* ESLint
-* Prettier
-* Docker
-* Docker Compose
-* Nginx
-* Vitest
-* Testing Library
-* Cucumber
-* GitHub Actions
+- React
+- TypeScript
+- Vite
+- ESLint
+- Prettier
+- Docker
+- Docker Compose
+- Nginx
+- Vitest
+- Testing Library
+- Cucumber
+- GitHub Actions
 
 ---
 
@@ -40,16 +40,16 @@ Este repositorio contiene la aplicación frontend desarrollada con React y Vite.
 
 El proyecto incorpora prácticas modernas de desarrollo de software:
 
-* Integración Continua (CI)
-* Despliegue Continuo (CD)
-* Contenedores Docker para desarrollo y producción
-* Pruebas unitarias
-* Pruebas de comportamiento (BDD) mediante Cucumber
-* Análisis estático del código
-* Formateo automático
-* Entornos reproducibles
+- Integración Continua (CI)
+- Despliegue Continuo (CD)
+- Contenedores Docker para desarrollo y producción
+- Pruebas unitarias
+- Pruebas de comportamiento (BDD) mediante Cucumber
+- Análisis estático del código
+- Formateo automático
+- Entornos reproducibles
 
-La infraestructura de despliegue se apoya en servicios *SaaS* administrados, permitiendo mantener un proceso de entrega automatizado sin administrar servidores propios.
+La infraestructura de despliegue se apoya en servicios _SaaS_ administrados, permitiendo mantener un proceso de entrega automatizado sin administrar servidores propios.
 
 ---
 
@@ -62,6 +62,7 @@ make start
 ```
 
 Para mas información:
+
 ```bash
 make help
 ```
@@ -70,4 +71,4 @@ make help
 
 ## Estado
 
-**Moiras** se encuentra en *desarrollo activo*.
+**Moiras** se encuentra en _desarrollo activo_.
