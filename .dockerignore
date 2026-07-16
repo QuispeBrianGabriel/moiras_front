@@ -4,3 +4,4 @@ dist/
 .github/
 docker/
 .env
+coverage

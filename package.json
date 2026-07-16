@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview --host",
     "format": "prettier . --write",
-    "test": "eslint . --max-warnings 0 && prettier . --check && tsc --noEmit && vitest run && cucumber-js && vite build"
+    "test": "eslint . --max-warnings 0 && prettier . --check && tsc --noEmit && vitest run --coverage && cucumber-js && vite build"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^13.1.0",
