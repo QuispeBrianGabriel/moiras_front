@@ -1,8 +1,8 @@
-# Moiras Frontend
+# 🌌 Moiras Frontend
 
-> Frontend de la plataforma **Moiras**, un sistema diseñado para ayudar a los educadores a gestionar el desarrollo de sus estudiantes mediante evidencia verificable, permitiendo a estos últimos visibilizar su crecimiento educativo y profesional.
+> 💡Frontend de la plataforma **Moiras**, un sistema diseñado para ayudar a los educadores a gestionar el desarrollo de sus estudiantes mediante evidencia verificable, permitiendo a estos últimos visibilizar su crecimiento educativo y profesional.
 
-## ¿Qué es Moiras?
+## 🎯 ¿Qué es Moiras?
 
 Moiras es un proyecto que busca convertirse en la infraestructura digital para todo tipo de educadores. Ofreciendo un conjunto de herramientas necesarias para gestionar este proceso y transformar esas interacciones en evidencia verificable que refleje el desarrollo profesional de cada individuo.
 
@@ -10,58 +10,46 @@ Nuestro objetivo es superar la limitación de la autodeclaración; en su lugar, 
 
 ---
 
-## Este repositorio
+## 💻 Este repositorio
 
 Este repositorio contiene la aplicación frontend desarrollada con React y Vite.
 
-- Proporciona la interfaz de usuario de la plataforma
-- Se comunica con los servicios backend mediante una API
+- 🎨 UI diseñada para una experiencia fluida, intuitiva y accesible
+- 🔌 Comunicación directa con los servicios de backend a través de API
 
 ---
 
 ## Tecnologías
 
-- React
-- TypeScript
-- Vite
-- ESLint
-- Prettier
-- Docker
-- Docker Compose
-- Nginx
-- Vitest
-- Testing Library
-- Cucumber
-- GitHub Actions
+- **Core**: React ⚛️ + TypeScript 📘 + Vite ⚡
+- **Linter**: ESLint 🔍
+- **Formatter**: Prettier ✨
+- **Virtualización**: Docker 🐳 + Docker Compose 🐙
+- **Servidor**: Nginx 🟢
+- **Testing**: Vitest 🧪 + Testing Library 🐙 + Cucumber 🥒
+- **Automatización**: GitHub Actions 🚀
 
 ---
 
-## Calidad del proyecto
+## 💎 Calidad del proyecto
 
-El proyecto incorpora prácticas modernas de desarrollo de software:
-
-- Integración Continua (CI)
-- Despliegue Continuo (CD)
-- Contenedores Docker para desarrollo y producción
-- Pruebas unitarias
-- Pruebas de comportamiento (BDD) mediante Cucumber
-- Análisis estático del código
-- Formateo automático
-- Entornos reproducibles
-
-La infraestructura de despliegue se apoya en servicios _SaaS_ administrados, permitiendo mantener un proceso de entrega automatizado sin administrar servidores propios.
+- 🔄 Integración y Despliegue Continuo (CI/CD) automatizado
+- 🐳 Contenedores Docker garantizando paridad dev/prod
+- 🧪 Testing con pruebas unitarias y de comportamiento
+- 🛡️ Análisis estático de código
+- 🚀 Infraestructura serverless apoyada en servicios SaaS
 
 ---
 
-## Ejecución
+## 🚀 Ejecución
 
-El proyecto puede ejecutarse mediante:
+Levanta el proyecto localmente en un solo comando:
 
 ```bash
 make start
 ```
 
-Para mas información:
+Para conocer todas las tareas de automatización disponibles:
 
 ```bash
 make help
@@ -69,6 +57,6 @@ make help
 
 ---
 
-## Estado
+## 📈 Estado del Proyecto
 
-**Moiras** se encuentra en _desarrollo activo_.
+🛠️ **Moiras** se encuentra en _desarrollo activo_.
