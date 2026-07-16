@@ -9,8 +9,10 @@ YELLOW := \033[0;33m
 CYAN   := \033[0;36m
 
 .DEFAULT_GOAL := help
-.PHONY: up stop clear help
+.PHONY: start run up stop clean clear help
 
+start: up
+run: up
 up:
 	@printf "$(CYAN)$(BOLD)🚀 Levantando entorno...$(RESET)\n"
 	@$(DC) up -d --build
@@ -24,6 +26,7 @@ stop:
 	@$(DC) stop
 	@printf "$(GREEN)✅ Entorno detenido$(RESET)\n"
 
+clean: clear
 clear:
 	@printf "$(RED)$(BOLD)🧹 Limpiando entorno por completo...$(RESET)\n"
 	@$(DC) down --rmi local --volumes --remove-orphans
@@ -32,7 +35,10 @@ clear:
 help:
 	@printf "\n$(BOLD)$(CYAN)🐳 Moiras Front — Entorno de desarrollo$(RESET)\n\n"
 	@printf "  $(GREEN)up$(RESET)      🚀 Levanta el contenedor y entra a su bash\n"
+	@printf "  $(GREEN)start$(RESET)   🔻 Alias de $(GREEN)up$(RESET)\n"
+	@printf "  $(GREEN)run$(RESET)     🔻 Alias de $(GREEN)up$(RESET)\n"
 	@printf "  $(GREEN)stop$(RESET)    🛑 Detiene el contenedor\n"
 	@printf "  $(GREEN)clear$(RESET)   🧹 Elimina contenedores, volúmenes e imagen del proyecto\n"
+	@printf "  $(GREEN)clean$(RESET)   🔻 Alias de $(GREEN)clear$(RESET)\n"
 	@printf "  $(GREEN)help$(RESET)    ❓ Muestra esta ayuda\n"
 	@printf "\n"
