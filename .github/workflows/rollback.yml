@@ -46,6 +46,8 @@ jobs:
     name: Forzar Redeply en Railway
     runs-on: ubuntu-latest
     needs: rollback-ghcr
+    environment: production
+
     steps:
       - name: Instalar Railway CLI
         run: npm install -g @railway/cli
