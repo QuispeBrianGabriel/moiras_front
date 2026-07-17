@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview --host",
     "format": "bash scripts/format.sh",
-    "test": "bash scripts/test.sh"
+    "test": "bash scripts/test.sh",
+    "postversion": "git push origin HEAD --tags"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^13.1.0",
