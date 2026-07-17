@@ -3,6 +3,9 @@
   "version": "0.3.2",
   "private": true,
   "type": "module",
+  "publishConfig": {
+    "message": "Versión v%s 🎉"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
