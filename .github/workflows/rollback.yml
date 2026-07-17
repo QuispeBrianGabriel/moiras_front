@@ -32,13 +32,13 @@ jobs:
           IMAGE_BASE="ghcr.io/${{ steps.image.outputs.name }}"
           TARGET_IMAGE="$IMAGE_BASE:${{ inputs.version }}"
           PROD_IMAGE="$IMAGE_BASE:production"
-          
+
           echo "Descargando versión destino: $TARGET_IMAGE"
           docker pull $TARGET_IMAGE
-          
+
           echo "Re-taggeando como production..."
           docker tag $TARGET_IMAGE $PROD_IMAGE
-          
+
           echo "Subiendo nuevo puntero de producción a GHCR..."
           docker push $PROD_IMAGE
 
