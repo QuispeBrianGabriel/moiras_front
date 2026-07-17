@@ -6,6 +6,20 @@ on:
       - 'v*'
 
 jobs:
+
+  github-release:
+    name: Crear GitHub Release
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Crear release con notas automáticas
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+
   build-and-push:
     name: Build & Push Imagen
     runs-on: ubuntu-latest
