@@ -12,3 +12,4 @@ services:
       - '4173:4173'
     volumes:
       - .:/app
+      - ~/.gitconfig:/root/.gitconfig:ro
