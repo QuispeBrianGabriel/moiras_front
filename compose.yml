@@ -13,3 +13,6 @@ services:
     volumes:
       - .:/app
       - ~/.gitconfig:/root/.gitconfig:ro
+      - ~/.ssh:/root/.ssh:ro
+    environment:
+      - GIT_SSH_COMMAND=ssh -o IdentitiesOnly=yes -F /dev/null
