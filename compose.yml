@@ -4,6 +4,7 @@ services:
     image: moiras_front-dev
     stdin_open: true
     tty: true
+    user: "${CURRENT_UID}:${CURRENT_GID}"
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -12,7 +13,7 @@ services:
       - '4173:4173'
     volumes:
       - .:/app
-      - ~/.gitconfig:/root/.gitconfig:ro
-      - ~/.ssh:/root/.ssh:ro
+      - ~/.gitconfig:/home/node/.gitconfig:ro
+      - ~/.ssh:/home/node/.ssh:ro
     environment:
       - GIT_SSH_COMMAND=ssh -o IdentitiesOnly=yes -F /dev/null
