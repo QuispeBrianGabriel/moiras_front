@@ -18,7 +18,7 @@ up:
 	@printf "$(GREEN)$(BOLD)🚀 Levantando entorno...$(RESET)\n"
 	@$(DC) up -d --build
 	@printf "$(GREEN)🤖 Preparando el contenedor$(RESET)\n"
-	@$(DC) exec $(SERVICE) npm ci
+	@$(DC) exec $(SERVICE) npm install
 	@printf "$(GREEN)✅ Entrando al contenedor$(RESET)\n"
 	@$(DC) exec $(SERVICE) bash
 
