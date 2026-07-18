@@ -29,7 +29,9 @@ jobs:
     permissions:
       contents: read
       packages: write
-
+    outputs:
+      image: ${{ steps.image.outputs.name }}
+      version: ${{ steps.meta.outputs.version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -56,8 +58,6 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=latest
-            type=raw,value=production
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
 
@@ -77,12 +77,50 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push
     environment: production
-
     steps:
-      - name: Instalar Railway CLI
-        run: npm install -g @railway/cli
-
-      - name: Desplegar en Railway
-        run: railway redeploy --service ${{ secrets.RAILWAY_SERVICE_ID }} --yes
+      - name: Apuntar Railway a la imagen versionada y redeployar
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
+          RAILWAY_ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
+          IMAGE: ghcr.io/${{ needs.build-and-push.outputs.image }}:${{ needs.build-and-push.outputs.version }}
+        run: |
+          set -euo pipefail
+          API="https://backboard.railway.com/graphql/v2"
+
+          echo "Actualizando source image a: $IMAGE"
+          curl --fail --silent -X POST "$API" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -d "$(jq -n \
+              --arg serviceId "$RAILWAY_SERVICE_ID" \
+              --arg environmentId "$RAILWAY_ENVIRONMENT_ID" \
+              --arg image "$IMAGE" \
+              '{
+                query: "mutation serviceInstanceUpdate($serviceId: String!, $environmentId: String!, $input: ServiceInstanceUpdateInput!) { serviceInstanceUpdate(serviceId: $serviceId, environmentId: $environmentId, input: $input) }",
+                variables: { serviceId: $serviceId, environmentId: $environmentId, input: { source: { image: $image } } }
+              }')" | tee /tmp/update.json
+
+          if grep -q '"errors"' /tmp/update.json; then
+            echo "::error::Fallo actualizando el source image en Railway"
+            exit 1
+          fi
+
+          echo "Disparando redeploy con la nueva imagen..."
+          curl --fail --silent -X POST "$API" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -d "$(jq -n \
+              --arg serviceId "$RAILWAY_SERVICE_ID" \
+              --arg environmentId "$RAILWAY_ENVIRONMENT_ID" \
+              '{
+                query: "mutation serviceInstanceDeployV2($serviceId: String!, $environmentId: String!) { serviceInstanceDeployV2(serviceId: $serviceId, environmentId: $environmentId) }",
+                variables: { serviceId: $serviceId, environmentId: $environmentId }
+              }')" | tee /tmp/deploy.json
+
+          if grep -q '"errors"' /tmp/deploy.json; then
+            echo "::error::Fallo disparando el deploy en Railway"
+            exit 1
+          fi
+
+          echo "Deploy de $IMAGE disparado correctamente."
