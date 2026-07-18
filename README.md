@@ -19,6 +19,26 @@ Este repositorio contiene la aplicación frontend desarrollada con React y Vite.
 
 ---
 
+## 🏗️ Arquitectura de despliegue
+
+El proyecto adopta un modelo de despliegue basado en **versiones inmutables**.
+
+Cada release genera una imagen Docker identificada por su versión (`vX.Y.Z`), la cual se publica en GitHub Container Registry (GHCR). Las imágenes nunca se modifican una vez publicadas.
+
+El pipeline de despliegue actualiza automáticamente la configuración del servicio en Railway mediante su API GraphQL para que apunte explícitamente a la versión liberada y, posteriormente, dispara un nuevo despliegue.
+
+**Ventajas:**
+
+- 📦 Imágenes Docker inmutables
+- 🔖 Versionado explícito
+- 🔄 Rollbacks determinísticos
+- 📜 Trazabilidad completa
+- 🚀 Despliegues reproducibles
+
+**Desventaja:** modificar la configuración del servicio, requiere del token de mi cuenta personal.
+
+---
+
 ## Tecnologías
 
 - **Core**: React ⚛️ + TypeScript 📘 + Vite ⚡
@@ -28,16 +48,22 @@ Este repositorio contiene la aplicación frontend desarrollada con React y Vite.
 - **Servidor**: Nginx 🟢
 - **Testing**: Vitest 🧪 + Testing Library 🐙 + Cucumber 🥒
 - **Automatización**: GitHub Actions 🚀
+- **Contenedores**: GitHub Container Registry (GHCR) 📦
+- **Infraestructura**: Railway 🚂
 
 ---
 
 ## 💎 Calidad del proyecto
 
-- 🔄 Integración y Despliegue Continuo (CI/CD) automatizado
-- 🐳 Contenedores Docker garantizando paridad dev/prod
+- 🔄 Integración Continua (CI) completamente automatizada
+- 🚀 Despliegue Continuo (CD) mediante GitHub Actions y Railway GraphQL API
+- 📦 Versionado inmutable de artefactos Docker
+- 🔁 Rollbacks reproducibles hacia cualquier versión publicada
+- 🐳 Contenedores Docker garantizando paridad entre desarrollo y producción
 - 🧪 Testing con pruebas unitarias y de comportamiento
 - 🛡️ Análisis estático de código
-- 🚀 Infraestructura serverless apoyada en servicios SaaS
+- 📜 Trazabilidad completa del ciclo de liberación
+- ☁️ Infraestructura serverless apoyada en servicios SaaS
 
 ---
 
