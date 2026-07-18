@@ -92,4 +92,12 @@ export default tseslint.config(
       'no-var': 'error',
     },
   },
+
+  {
+    files: ['features/steps/**/*.ts', 'test/**/*.ts', 'test/**/*.tsx'],
+    rules: {
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+    },
+  },
 );
