@@ -80,7 +80,7 @@ jobs:
     steps:
       - name: Apuntar Railway a la imagen versionada y redeployar
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_ACCOUNT_TOKEN: ${{ secrets.RAILWAY_ACCOUNT_TOKEN }}
           RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
           RAILWAY_ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
           IMAGE: ghcr.io/${{ needs.build-and-push.outputs.image }}:${{ needs.build-and-push.outputs.version }}
@@ -91,7 +91,7 @@ jobs:
           echo "Actualizando source image a: $IMAGE"
           curl --fail --silent -X POST "$API" \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Authorization: Bearer $RAILWAY_ACCOUNT_TOKEN" \
             -d "$(jq -n \
               --arg serviceId "$RAILWAY_SERVICE_ID" \
               --arg environmentId "$RAILWAY_ENVIRONMENT_ID" \
@@ -109,7 +109,7 @@ jobs:
           echo "Disparando redeploy con la nueva imagen..."
           curl --fail --silent -X POST "$API" \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Authorization: Bearer $RAILWAY_ACCOUNT_TOKEN" \
             -d "$(jq -n \
               --arg serviceId "$RAILWAY_SERVICE_ID" \
               --arg environmentId "$RAILWAY_ENVIRONMENT_ID" \
