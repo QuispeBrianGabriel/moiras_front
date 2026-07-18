@@ -32,7 +32,7 @@ jobs:
 
       - name: Apuntar Railway a la versión anterior y redeployar
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_ACCOUNT_TOKEN: ${{ secrets.RAILWAY_ACCOUNT_TOKEN }}
           RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
           RAILWAY_ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
         run: |
@@ -41,7 +41,7 @@ jobs:
 
           curl --fail --silent -X POST "$API" \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Authorization: Bearer $RAILWAY_ACCOUNT_TOKEN" \
             -d "$(jq -n \
               --arg serviceId "$RAILWAY_SERVICE_ID" \
               --arg environmentId "$RAILWAY_ENVIRONMENT_ID" \
@@ -55,7 +55,7 @@ jobs:
 
           curl --fail --silent -X POST "$API" \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Authorization: Bearer $RAILWAY_ACCOUNT_TOKEN" \
             -d "$(jq -n \
               --arg serviceId "$RAILWAY_SERVICE_ID" \
               --arg environmentId "$RAILWAY_ENVIRONMENT_ID" \
