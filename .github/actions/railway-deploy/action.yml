@@ -1,0 +1,25 @@
+name: 'Railway Set Image & Deploy'
+description: 'Actualiza la imagen Docker de un servicio en Railway y dispara el redeploy'
+
+inputs:
+  image:
+    description: 'Imagen Docker completa (ej. ghcr.io/user/repo:1.2.3)'
+    required: true
+  service-id:
+    required: true
+  environment-id:
+    required: true
+  account-token:
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Actualizar imagen y redeployar en Railway
+      shell: bash
+      env:
+        IMAGE: ${{ inputs.image }}
+        RAILWAY_SERVICE_ID: ${{ inputs.service-id }}
+        RAILWAY_ENVIRONMENT_ID: ${{ inputs.environment-id }}
+        RAILWAY_ACCOUNT_TOKEN: ${{ inputs.account-token }}
+      run: ${{ github.action_path }}/../../../scripts/railway-set-image.sh
