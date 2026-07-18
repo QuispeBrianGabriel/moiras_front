@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
       - name: Verificar que la imagen exista en GHCR
         env:
           IMAGE_NAME_UPPER: ${{ github.repository }}
@@ -31,39 +34,9 @@ jobs:
           }
 
       - name: Apuntar Railway a la versión anterior y redeployar
-        env:
-          RAILWAY_ACCOUNT_TOKEN: ${{ secrets.RAILWAY_ACCOUNT_TOKEN }}
-          RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
-          RAILWAY_ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
-        run: |
-          set -euo pipefail
-          API="https://backboard.railway.com/graphql/v2"
-
-          curl --fail --silent -X POST "$API" \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $RAILWAY_ACCOUNT_TOKEN" \
-            -d "$(jq -n \
-              --arg serviceId "$RAILWAY_SERVICE_ID" \
-              --arg environmentId "$RAILWAY_ENVIRONMENT_ID" \
-              --arg image "$IMAGE" \
-              '{
-                query: "mutation serviceInstanceUpdate($serviceId: String!, $environmentId: String!, $input: ServiceInstanceUpdateInput!) { serviceInstanceUpdate(serviceId: $serviceId, environmentId: $environmentId, input: $input) }",
-                variables: { serviceId: $serviceId, environmentId: $environmentId, input: { source: { image: $image } } }
-              }')" | tee /tmp/update.json
-
-          grep -q '"errors"' /tmp/update.json && { echo "::error::Fallo el update"; exit 1; } || true
-
-          curl --fail --silent -X POST "$API" \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $RAILWAY_ACCOUNT_TOKEN" \
-            -d "$(jq -n \
-              --arg serviceId "$RAILWAY_SERVICE_ID" \
-              --arg environmentId "$RAILWAY_ENVIRONMENT_ID" \
-              '{
-                query: "mutation serviceInstanceDeployV2($serviceId: String!, $environmentId: String!) { serviceInstanceDeployV2(serviceId: $serviceId, environmentId: $environmentId) }",
-                variables: { serviceId: $serviceId, environmentId: $environmentId }
-              }')" | tee /tmp/deploy.json
-
-          grep -q '"errors"' /tmp/deploy.json && { echo "::error::Fallo el deploy"; exit 1; } || true
-
-          echo "Rollback completo: Railway ahora corre $IMAGE"
+        uses: ./.github/actions/railway-deploy
+        with:
+          image: ${{ env.IMAGE }}
+          service-id: ${{ secrets.RAILWAY_SERVICE_ID }}
+          environment-id: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
+          account-token: ${{ secrets.RAILWAY_ACCOUNT_TOKEN }}
