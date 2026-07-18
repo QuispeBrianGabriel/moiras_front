@@ -1,5 +1,7 @@
 # 🌌 Moiras Frontend
 
+[![Pipeline](https://github.com/QuispeBrianGabriel/moiras_front/actions/workflows/pipeline.yml/badge.svg)](https://github.com/QuispeBrianGabriel/moiras_front/actions/workflows/pipeline.yml) [![Release](https://img.shields.io/github/v/release/QuispeBrianGabriel/moiras_front)](https://github.com/QuispeBrianGabriel/moiras_front/releases)
+
 > 💡Frontend de la plataforma **Moiras**, un sistema diseñado para ayudar a los educadores a gestionar el desarrollo de sus estudiantes mediante evidencia verificable, permitiendo a estos últimos visibilizar su crecimiento educativo y profesional.
 
 ## 🎯 ¿Qué es Moiras?
